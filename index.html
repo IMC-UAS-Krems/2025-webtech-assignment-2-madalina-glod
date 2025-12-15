@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Central Kitchen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-heart-fill me-2"></i> World Central Kitchen
+        <small class="ms-2 slogan">- not tomorrow, today</small>
+
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item me-3">
+            <a class="nav-link" href="#gallery">Donations</a>
+          </li>
+
+          <li class="nav-item">
+            <button id="cartBtn" class="btn btn-light position-relative" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart">
+              <i class="bi bi-cart3"></i> Cart
+              <span id="cartPreviewBadge"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <header class="bg-light py-4 mb-4">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div>
+        <h1 class="h3 mb-1">Donate fresh meals to communities in need!</h1>
+        <p class="mb-0 text-muted">Choose products yourself and we will handle the rest. Add items to
+          cart and checkout.</p>
+      </div>
+      <div>
+      </div>
+    </div>
+
+    <img src="https://www.sprinkleofthis.com/wp-content/uploads/2020/11/dreamstime_m_169675954.jpg" alt="Banner"
+      class="navbar-banner">
+
+    <main class="container mb-5">
+
+
+      <section id="gallery" class="mb-5">
+        <h2 class="h4 mb-3">Products & Donation Packages</h2>
+        <p class="text-muted small">Click "Add" to put a donation item into your cart.</p>
+        <div id="productsRow" class="row g-4"></div>
+      </section>
+
+      <section id="checkoutSection" class="mb-5">
+        <div class="row">
+
+          <div class="col-lg-7">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Cart Preview
+                  <span id="cartPreviewBadge" class="badge bg-secondary ms-2">0 items</span>
+                </h5>
+                <div id="cartPreview" class="mb-3">
+                  <p class="text-muted small">Your cart is empty.</p>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="openCartOffcanvas" class="btn btn-outline-primary" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasCart">Open Cart</button>
+                  <button id="checkoutBtn" class="btn btn-primary">Checkout</button>
+                  <button id="clearCartBtn" class="btn btn-outline-danger">Clear Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="collapse mt-4" id="shippingCollapse">
+              <div class="card card-body">
+                <h5>Shipping / Buyer Information</h5>
+                <form id="checkoutForm" novalidate>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" class="form-control" id="firstName" required>
+                      <div class="invalid-feedback">Please enter your first name.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="lastName" required>
+                      <div class="invalid-feedback">Please enter your last name.</div>
+                    </div>
+                    <div class="col-12">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" required>
+                      <div class="invalid-feedback">Please enter a valid email.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="phone" class="form-label">Phone</label>
+                      <input type="tel" class="form-control" id="phone" pattern="\d+" required>
+                      <div class="invalid-feedback">Please enter numbers only (digits only).</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="zip" class="form-label">ZIP / Postal Code</label>
+                      <input type="text" class="form-control" id="zip" maxlength="6" required>
+                      <div class="invalid-feedback">ZIP code required (max 6 characters).</div>
+                    </div>
+                    <div class="col-12">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="address" required>
+                      <div class="invalid-feedback">Please provide your address.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="country" class="form-label">Country</label>
+                      <select id="country" class="form-select" required>
+                        <option value="">Choose...</option>
+                        <option>Austria</option>
+                        <option>Germany</option>
+                        <option>Switzerland</option>
+                        <option>United Kingdom</option>
+                        <option>Other</option>
+                      </select>
+                      <div class="invalid-feedback">Please select a country.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="notes" class="form-label">Notes (optional)</label>
+                      <input type="text" id="notes" class="form-control" placeholder="Gift message, delivery note...">
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button id="submitOrderBtn" type="submit" class="btn btn-success">Submit
+                        Order</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-5">
+            <div class="accordion" id="summaryAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#orderSummaryCollapse">
+                    Order Summary
+                  </button>
+                </h2>
+                <div id="orderSummaryCollapse" class="accordion-collapse collapse" data-bs-parent="#summaryAccordion">
+                  <div class="accordion-body">
+                    <div id="orderSummary">
+                      <p class="text-muted">No items yet.</p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                      <div>Subtotal:</div>
+                      <div id="subtotalText">€0.00</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div>Discount:</div>
+                      <div id="discountText">€0.00</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div>Tax (VAT 10%):</div>
+                      <div id="taxText">€0.00</div>
+                    </div>
+                    <div class="d-flex justify-content-between fw-bold fs-6">
+                      <div>Total:</div>
+                      <div id="totalText">€0.00</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mt-3">
+              <div class="card-body">
+                <h6>Why we exist</h6>
+                <p class="small text-muted mb-0">
+                  This is a nonprofit organization. All proceeds support local relief programs. You
+                  can buy a gift pack for someone in need
+                  or donate directly. <br> “When you talk about food and water, people don’t want a solution one week
+                  from
+                  now, one month from now. The solution has to be now.”
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr>
+
+
+
+    </main>
+
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title"><i class="bi bi-cart3"></i> Your Cart</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <div id="offcanvasCartBody" class="mb-3">
+          <p class="text-muted">Your cart is empty.</p>
+        </div>
+        <div class="mt-auto">
+          <div class="d-flex justify-content-between mb-2">
+            <div>Subtotal:</div>
+            <div id="offcanvasSubtotal">€0.00</div>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <div>Total Items:</div>
+            <div id="offcanvasTotalItems">0</div>
+          </div>
+          <div class="d-grid gap-2">
+            <button id="offcanvasCheckoutBtn" class="btn btn-primary" type="button">Proceed to
+              Checkout</button>
+            <button id="offcanvasClearBtn" class="btn btn-outline-danger" type="button">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">Order Confirmation</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="confirmationBody"></div>
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Charity Shop</strong>
+          <small class="text-muted">now</small>
+          <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toastBody">Item added to cart.</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+
+</body>
+<footer>
+  Mădălina Glod, 2025, © All rights reserved.
+</footer>
+
+</html>
